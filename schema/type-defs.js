@@ -3,6 +3,7 @@ const { gql } = require("apollo-server");
 const typeDefs = gql`
   # will hold the queries we want to make inside our api
   type User {
+    id: ID!
     name: String!
     username: String!
     age: Int!
