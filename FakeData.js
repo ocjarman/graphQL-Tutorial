@@ -61,4 +61,37 @@ const UserList = [
   },
 ];
 
-module.exports = { UserList };
+const MovieList = [
+  {
+    id: 1,
+    name: "Titanic",
+    year: 2007,
+    isInTheaters: false,
+  },
+  {
+    id: 2,
+    name: "Finding Nemo",
+    year: 2018,
+    isInTheaters: true,
+  },
+  {
+    id: 3,
+    name: "Little Mermaid",
+    year: 2016,
+    isInTheaters: true,
+  },
+  {
+    id: 4,
+    name: "Peter Pan",
+    year: 2005,
+    isInTheaters: false,
+  },
+  {
+    id: 5,
+    name: "Elmo's World",
+    year: 2001,
+    isInTheaters: true,
+  },
+];
+
+module.exports = { UserList, MovieList };
