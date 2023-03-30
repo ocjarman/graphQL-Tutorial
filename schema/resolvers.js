@@ -32,6 +32,37 @@ const resolvers = {
       );
     },
   },
+
+  //all fxns related to mutating data
+  Mutation: {
+    createUser: (parent, args) => {
+      const user = args.input;
+      console.log(user);
+      const lastId = UserList[UserList.length - 1].id;
+      user.id = lastId + 1;
+      UserList.push(user);
+      console.log(user);
+      return user;
+    },
+    updateUsername: (parent, args) => {
+      const { id, newUsername } = args.input;
+      console.log(args.input);
+      let userUpdated;
+      UserList.forEach((user) => {
+        if (user.id === Number(id)) {
+          console.log(args.input);
+          user.username = newUsername;
+          userUpdated = user;
+        }
+      });
+      return userUpdated;
+    },
+    deleteUser: (parent, args) => {
+      const id = args.id;
+      _.remove(UserList, (user) => user.id === Number(id));
+      return null;
+    },
+  },
 };
 
 module.exports = { resolvers };
