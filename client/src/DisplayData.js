@@ -39,6 +39,13 @@ const CREATE_USER_MUTATION = gql`
     }
   }
 `;
+const DELETE_USER_MUTATION = gql`
+  mutation DeleteUser($id: ID!) {
+    deleteUser(id: $id) {
+      id
+    }
+  }
+`;
 
 const DisplayData = () => {
   const [movieSearched, setMovieSearched] = useState("");
@@ -52,6 +59,7 @@ const DisplayData = () => {
   const { data, loading, refetch } = useQuery(QUERY_ALL_USERS);
   const { data: movieData } = useQuery(QUERY_ALL_MOVIES);
   const [createUser] = useMutation(CREATE_USER_MUTATION);
+  const [deleteUser] = useMutation(DELETE_USER_MUTATION);
 
   const [fetchMovie, { data: movieSearchedData, error: movieError }] =
     useLazyQuery(GET_MOVIE_BY_NAME);
@@ -103,6 +111,16 @@ const DisplayData = () => {
               <p>Username: {user.username}</p>
               <p>Age: {user.age}</p>
               <p>Nationality: {user.nationality}</p>
+              <button
+                onClick={() => {
+                  deleteUser({
+                    variables: { id: user.id },
+                  });
+                  refetch();
+                }}
+              >
+                Delete this user
+              </button>
             </div>
           );
         })}
